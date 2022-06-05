@@ -36,14 +36,19 @@
             </form>
         </div>
         {% if is_processed %}
+            <h4>PSNR Value: {{ psnr }}</h4><br>
+            <hr>
             <div class="image_row">
                 <div class="image_column">
+                    <p style="text-align:center">Original</p>
                     <img src="{% static 'img/image.jpg' %}" alt="Snow" style="width:100%; height:100%">
                 </div>
                 <div class="image_column">
-                    <img src="{% static 'img/lr_image.jpg' %}" alt="Forest" style="width:100%; height: 100%">
+                    <p style="text-align:center">x4 Bicubic</p>
+                    <img src="{% static 'img/lr_image.jpg'   %}" alt="Forest" style="width:100%; height: 100%">
                 </div>
                 <div class="image_column">
+                    <p style="text-align:center">Super Resolution</p>
                     <img src="{% static 'img/super_resolution.jpg' %}" alt="Mountains" style="width:100%; height: 100%">
                 </div>
             </div>

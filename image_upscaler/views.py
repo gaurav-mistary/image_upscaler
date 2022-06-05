@@ -6,15 +6,14 @@ from django.core.files.base import ContentFile
 import tensorflow as tf
 from .utils import preprocess_image, downscale_image, plt_save_image, get_model
 
+
 def client_index_view(request):
-    return render(request, 'client_index.html')
+    return render(request, "client_index.html")
+
 
 def server_index_view(request):
     form = ImageUploadForm()
-    context = {
-        'form': form,
-        "is_processed": False
-    }
+    context = {"form": form, "is_processed": False}
 
     if request.method == "POST":
         form = ImageUploadForm(request.POST, request.FILES)
@@ -28,16 +27,16 @@ def server_index_view(request):
             print("Cleaning previous images ...")
             if os.path.exists(normal_image):
                 os.remove(normal_image)
-            
+
             if os.path.exists(low_img):
                 os.remove(low_img)
-            
+
             if os.path.exists(sr_img):
                 os.remove(sr_img)
-            
+
             path = default_storage.save(normal_image, ContentFile(image.read()))
             print(f"Path: {path} type: {type(path)}")
-            
+
             hr_image = preprocess_image(path)
             print("Saving HR Image")
             plt_save_image(tf.squeeze(hr_image), filename=normal_image)
@@ -46,14 +45,19 @@ def server_index_view(request):
             plt_save_image(tf.squeeze(lr_image), filename=low_img)
 
             model = get_model()
-            
+
             fake_image = model(lr_image)
             fake_image = tf.squeeze(fake_image)
             print("Saving Super Resolution Image")
             plt_save_image(tf.squeeze(fake_image), filename=sr_img)
-            
+            psnr = tf.image.psnr(
+                tf.clip_by_value(fake_image, 0, 255),
+                tf.clip_by_value(hr_image, 0, 255),
+                max_val=255,
+            )
+
             context["is_processed"] = True
             context["form"] = form
+            context['psnr'] = float(psnr)
 
-
-    return render(request, 'server_index.html', context=context)
+    return render(request, "server_index.html", context=context)
