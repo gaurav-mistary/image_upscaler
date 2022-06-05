@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Client-Image Upscaler</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.6/dist/tf-tflite.min.js"></script>
+        <!-- <script src="./tf.js"></script>
+        <script src="./tflite.js"></script> -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}" />
+    </head>
+    <body>
+        <div class="pic-body">
+            <div class="pic-container">
+                <!-- <img src="https://storage.googleapis.com/tfweb/demos/io2021/cat.jpg"
+                crossOrigin="anonymous"/> -->
+                <!-- <img src="https://raw.githubusercontent.com/tensorflow/examples/master/lite/examples/super_resolution/android/app/src/main/assets/lr-1.jpg"
+                crossOrigin="anonymous"/> -->
+                <img id="blah" src="#" alt=" " />
+            </div>
+            
+            <div class="result-container">
+                <div class="trigger">Loading...</div> 
+                <canvas width="200px" height="200px" class="hide"></canvas>
+            </div>
+        </div>  
+        <div class="pic-body">
+            <div class="upload-btn-wrapper">
+                <button class="btn first">Load Img</button>
+                <input class="btn first" accept="image/*" type='file' id="imgInp" />
+              </div>
+            <button class="btn first trigger1">Loading...</button> 
+        </div>
+        <a href="{% url 'server-index' %}" class="btn btn-primary">Server Side</a>
+        <script>
+            var modelFilePath = "{% static 'js/asset/model.tflite' %}"
+        </script>
+        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>  
+    </body>
+</html>

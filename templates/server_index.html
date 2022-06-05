@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Server-Image Upscaler</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.6/dist/tf-tflite.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}" />
+        <style>
+            /* Three image containers (use 25% for four, and 50% for two, etc) */
+            .image_row {
+            display: flex;
+            }
+
+            .image_column {
+            flex: 33.33%;
+            padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="pic-body">
+            <div class="pic-container">
+                <img id="blah" src="https://storage.googleapis.com/tfweb/demos/io2021/cat.jpg"
+                crossOrigin="anonymous"/>
+            </div>
+        </div>  
+        <div class="pic-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row field-list_id">
+                    {{ form.upload_image.errors }}
+                    {{ form.upload_image }}
+                    <input type="submit" class="btn first"></input>
+                </div>
+            </form>
+        </div>
+        {% if is_processed %}
+            <div class="image_row">
+                <div class="image_column">
+                    <img src="{% static 'img/image.jpg' %}" alt="Snow" style="width:100%; height:100%">
+                </div>
+                <div class="image_column">
+                    <img src="{% static 'img/lr_image.jpg' %}" alt="Forest" style="width:100%; height: 100%">
+                </div>
+                <div class="image_column">
+                    <img src="{% static 'img/super_resolution.jpg' %}" alt="Mountains" style="width:100%; height: 100%">
+                </div>
+            </div>
+        {% endif %}
+        <script>
+            console.log("Script")
+            image_input.onchange = evt => {
+            const [file] = image_input.files
+            if (file) {
+                console.log("File " + file)
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+        </script>
+    </body>
+</html>
