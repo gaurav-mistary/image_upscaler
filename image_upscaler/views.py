@@ -7,6 +7,9 @@ import tensorflow as tf
 from .utils import preprocess_image, downscale_image, plt_save_image, get_model
 
 
+def home_page_view(request):
+    return render(request, 'home_page.html')
+
 def client_index_view(request):
     return render(request, "client_index.html")
 

@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.6/dist/tf-tflite.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+  <h1>Super Resolution</h1>
+
+<section>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="main-timeline">
+          <div class="timeline">
+            <div class="timeline-content">
+              <div class="circle"><span class="homebox">
+                          <img src="https://picsum.photos/164" class="img blurr-img">
+                         </span></div>
+              <div class="content">
+                <a style="text-decoration:none;" href="{% url 'server-index' %}"><span class="year">TensorFlow</span></a>
+                <h3 class="title h4">Definition</h3>
+                <p class="description">
+                  Super Resolution (SR) is a compilation of techniques for optimizing and maximizing image and video frame resolution. Through various algorithms and methods for modifying the properties of frames, this technique has provided important contributions to computer vision. This results in further data retrieval from frames.
+                </p>
+                <div class="icon"><span></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-content">
+              <div class="circle"><span class="homebox"><img src="https://picsum.photos/164" class="img" /></span></div>
+              <div class="content">
+                <a style="text-decoration:none;" href="{% url 'client-index' %}"><span class="year">TensorFlow Lite</span></a>
+                <h3 class="title h4">Introduction</h3>
+                <p class="description">
+                  Image Super-resolution attempts to transform a low-resolution image with coarse details into a comparable high resolution image with improved visual accuracy and refined details. Image super resolution is defined using terminology such as image scaling, zooming, up sampling, interpolation, and enlargement. A single image or a series of images may be used to create a higher-resolution raster image.
+                </p>
+                <div class="icon"><span></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-content">
+              <div class="circle"><span class="homebox">
+                          <img src="https://picsum.photos/165" class="img blurr-img">
+                         </span></div>
+              <div class="content">
+                <span class="year">TensorFlow</span>
+                <h3 class="title h4">Definition</h3>
+                <p class="description">
+                  Super Resolution (SR) is a compilation of techniques for optimizing and maximizing image and video frame resolution. Through various algorithms and methods for modifying the properties of frames, this technique has provided important contributions to computer vision. This results in further data retrieval from frames.
+                </p>
+                <div class="icon"><span></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-content">
+              <div class="circle"><span class="homebox"><img src="https://picsum.photos/165" class="img" /></span></div>
+              <div class="content">
+                <span class="year">TensorFlow Lite</span>
+                <h3 class="title h4">Introduction</h3>
+                <p class="description">
+                  Image Super-resolution attempts to transform a low-resolution image with coarse details into a comparable high resolution image with improved visual accuracy and refined details. Image super resolution is defined using terminology such as image scaling, zooming, up sampling, interpolation, and enlargement. A single image or a series of images may be used to create a higher-resolution raster image.
+                </p>
+                <div class="icon"><span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <h1>Journey of Super Resolution</h1>
+  <ul>
+    <li style="--accent-color:#41516C">
+      <div class="date">1974</div>
+      <div class="title">Super Resolution:  The Beginning</div>
+      <div class="descr">
+          <p>First SR algorithm Introduced</p>
+      </div>
+    </li>
+    <li style="--accent-color:#FBCA3E">
+      <div class="date">1985</div>
+      <div class="title">First Hallucination</div>
+      <div class="descr">
+        <p>SR algorithm using Neural Network</p>
+        <p>Fingerprint SR</p>
+      </div>
+    </li>
+    <li style="--accent-color:#E24A68">
+      <div class="date">2007</div>
+      <div class="title">Title 2</div>
+      <div class="descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos adipisci nobis nostrum vero nihil veniam.</div>
+    </li>
+    <li style="--accent-color:#E24A68">
+      <div class="date">2012</div>
+      <div class="title">Title 3</div>
+      <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minima consequuntur soluta placeat iure totam commodi repellendus ea delectus, libero fugit quod reprehenderit, sequi quo, et dolorum saepe nulla hic.</div>
+    </li>
+    <li style="--accent-color:#1B5F8C">
+      <div class="date">2017</div>
+      <div class="title">Title 4</div>
+      <div class="descr">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque.</div>
+    </li>
+    <li style="--accent-color:#4CADAD">
+      <div class="date">2022</div>
+      <div class="title">Title 5</div>
+      <div class="descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit, non.</div>
+    </li>
+  </ul>
+</body>
+</html>
