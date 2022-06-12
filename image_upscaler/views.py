@@ -4,11 +4,20 @@ from .forms import ImageUploadForm
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 import tensorflow as tf
-from .utils import preprocess_image, downscale_image, plt_save_image, get_model
+from .utils import (
+    VGG_LOSS,
+    get_esargan_model,
+    preprocess_image,
+    downscale_image,
+    plt_save_image,
+    get_esargan_model,
+    get_intermediate,
+)
 
 
 def home_page_view(request):
-    return render(request, 'home_page.html')
+    return render(request, "home_page.html")
+
 
 def client_index_view(request):
     return render(request, "client_index.html")
@@ -47,9 +56,8 @@ def server_index_view(request):
             lr_image = downscale_image(tf.squeeze(hr_image))
             plt_save_image(tf.squeeze(lr_image), filename=low_img)
 
-            model = get_model()
-
-            fake_image = model(lr_image)
+            esargan_model = get_esargan_model()
+            fake_image = esargan_model(lr_image)
             fake_image = tf.squeeze(fake_image)
             print("Saving Super Resolution Image")
             plt_save_image(tf.squeeze(fake_image), filename=sr_img)
@@ -59,8 +67,11 @@ def server_index_view(request):
                 max_val=255,
             )
 
+            layer_names = get_intermediate(path)
+
             context["is_processed"] = True
             context["form"] = form
-            context['psnr'] = float(psnr)
+            context["psnr"] = float(psnr)
+            context["layer_names"] = layer_names
 
     return render(request, "server_index.html", context=context)
